@@ -1,16 +1,20 @@
+@if(!urgency){
+  {{changeTrafficLightState()}}
+}
+
 <div class="traffic-light-container">
   <button class="cross-button">Пресечи</button>
   <div class="horizontal-traffic-light">
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
+    <div class="light red-light" [ngClass]="redActive ? 'red' : '' "></div>
+    <div class="light yellow-light" [ngClass]="yellowActive ? 'yellow' : '' "></div>
+    <div class="light green-light" [ngClass]="greenActive ? 'green' : '' "></div>
   </div>
 </div>
 <div class="traffic-light-container-2">
   <button class="cross-button">Пресечи</button>
   <div class="horizontal-traffic-light">
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
+    <div class="light red-light" [ngClass]="redActive ? 'red' : '' "></div>
+    <div class="light yellow-light" [ngClass]="yellowActive ? 'yellow' : '' "></div>
+    <div class="light green-light" [ngClass]="greenActive ? 'green' : '' "></div>
   </div>
 </div>

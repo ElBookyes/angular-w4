@@ -1,0 +1,33 @@
+@use '../styles.scss' as *;
+
+
+.traffic-light-container {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.traffic-light-container-2 {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 1rem;
+}
+
+.horizontal-traffic-light {
+    display: flex;
+    gap: 1rem;
+    padding: 1em;
+    background-color: var(--clr-primary-1);
+    & .light {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: solid 2px var(--background);
+    }
+}

@@ -33,3 +33,24 @@
         border: solid 2px var(--background);
     }
 }
+
+.red-light {
+    &.active {
+        background-color: var(--clr-red);
+        box-shadow: 0 0 20px 10px var(--clr-red);
+    }
+}
+
+.yellow-light {
+    &.active {
+        background-color: var(--clr-yellow);
+        box-shadow: 0 0 20px 10px var(--clr-yellow);
+    }
+}
+
+.green-light {
+    &.active {
+        background-color: var(--clr-green);
+        box-shadow: 0 0 20px 10px var(--clr-green);
+    }
+}

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HorizontalTrafficLightComponent } from './horizontal-traffic-light/horizontal-traffic-light.component';
-import { verifyHostBindings } from '@angular/compiler';
 import { VerticalTrafficLightComponent } from './vertical-traffic-light/vertical-traffic-light.component';
 
 @Component({
@@ -11,7 +10,83 @@ import { VerticalTrafficLightComponent } from './vertical-traffic-light/vertical
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  title = 'angular-w4';
+  horizontalColor = 'red';
+  verticalColor = 'green';
+  trafficLightsInterval: any;
+  yellowBlinkInterval: any;
+  emergency = false;
+  crossButtonDisabled = false;
+  emergencyButtonDisabled = false;
+
+  ngOnInit(): void {
+    this.startTrafficLightsInterval()
+  }
+
+  startTrafficLightsInterval() {
+    if (!this.emergency) {
+      this.trafficLightsInterval = setInterval(() => {
+        const newHorizontalColor = this.horizontalColor === 'red' ? 'green': 'red';
+        const newVerticalColor = this.verticalColor === 'red' ? 'green': 'red';
+
+        this.handleYellow(newHorizontalColor, newVerticalColor);
+      }, 5000)
+    }
+  }
+
+  handleYellow(newHorizontalColor: string, newVerticalColor: string) {
+    this.horizontalColor = 'yellow';
+    this.verticalColor = 'yellow';
+    this.clearTrafficLightsInterval();
+
+    setTimeout(() => {
+      this.horizontalColor = newHorizontalColor;
+      this.verticalColor = newVerticalColor;
+      this.startTrafficLightsInterval();
+    }, 2000)
+  }
+
+  processEmergency() {
+    if (!this.emergency) {
+      this.emergency = true;
+      this.emergencyButtonDisabled = true;
+      this.clearTrafficLightsInterval();
+      this.yellowBlinkInterval = setInterval(() => {
+        this.flashYellowLights();
+      }, 500);
+    }
+    setTimeout(() => {
+      clearInterval(this.yellowBlinkInterval);
+      this.emergency = false;
+      this.resetTrafficLights();
+      this.startTrafficLightsInterval();
+
+      setTimeout(() => {
+        this.emergencyButtonDisabled = false;
+      }, 10000);
+    },10000);
+  }
+
+  processCrossClick() {
+    if (this.horizontalColor === 'yellow') {
+      alert('Incorrect crossing');
+    }
+  }
+
+  flashYellowLights(){
+    this.horizontalColor = this.horizontalColor == 'yellow' ? 'off' : 'yellow';
+    this.verticalColor = this.verticalColor == 'yellow' ? 'off' : 'yellow';
+  }
+
+  clearTrafficLightsInterval() {
+    clearInterval(this.trafficLightsInterval);
+  }
+
+  resetTrafficLights() {
+    this.horizontalColor = 'red';
+    this.verticalColor = 'green';
+    this.clearTrafficLightsInterval();
+    this.startTrafficLightsInterval();
+  }
 }
 
 // Create a simple WEB simulation of an intersection. On the screen, the user sees 4 components resembling traffic lights

@@ -32,14 +32,23 @@
     }
 }
 
-.red {
-    background-color: var(--clr-red);
+.red-light {
+    &.active {
+        background-color: var(--clr-red);
+        box-shadow: 0 0 20px 10px var(--clr-red);
+    }
 }
 
-.yellow {
-    background-color: var(--clr-yellow);
+.yellow-light {
+    &.active {
+        background-color: var(--clr-yellow);
+        box-shadow: 0 0 20px 10px var(--clr-yellow);
+    }
 }
 
-.green {
-    background-color: var(--clr-green);
+.green-light {
+    &.active {
+        background-color: var(--clr-green);
+        box-shadow: 0 0 20px 10px var(--clr-green);
+    }
 }

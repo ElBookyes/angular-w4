@@ -1,20 +1,16 @@
-@if(!urgency){
-  {{changeTrafficLightState()}}
-}
-
 <div class="traffic-light-container">
-  <button class="cross-button">Пресечи</button>
+  <button class="cross-button" [disabled]="horizontalColor == 'red' || emergency">Пресечи</button>
   <div class="horizontal-traffic-light">
-    <div class="light red-light" [ngClass]="redActive ? 'red' : '' "></div>
-    <div class="light yellow-light" [ngClass]="yellowActive ? 'yellow' : '' "></div>
-    <div class="light green-light" [ngClass]="greenActive ? 'green' : '' "></div>
+    <div class="light red-light" [ngClass]="{'active': horizontalColor == 'red'}"></div>
+    <div class="light yellow-light" [ngClass]="{'active': horizontalColor == 'yellow'}"></div>
+    <div class="light green-light" [ngClass]="{'active': horizontalColor == 'green'}"></div>
   </div>
 </div>
 <div class="traffic-light-container-2">
-  <button class="cross-button">Пресечи</button>
+  <button class="cross-button" [disabled]="horizontalColor == 'red' || emergency">Пресечи</button>
   <div class="horizontal-traffic-light">
-    <div class="light red-light" [ngClass]="redActive ? 'red' : '' "></div>
-    <div class="light yellow-light" [ngClass]="yellowActive ? 'yellow' : '' "></div>
-    <div class="light green-light" [ngClass]="greenActive ? 'green' : '' "></div>
+    <div class="light red-light" [ngClass]="{'active': horizontalColor == 'red'}"></div>
+    <div class="light yellow-light" [ngClass]="{'active': horizontalColor == 'yellow'}"></div>
+    <div class="light green-light" [ngClass]="{'active': horizontalColor == 'green'}"></div>
   </div>
 </div>

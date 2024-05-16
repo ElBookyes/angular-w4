@@ -1,17 +1,17 @@
 <div class="traffic-light-container">
-  <button class="cross-button">Пресечи</button>
+  <button class="cross-button" [disabled]="verticalColor == 'red' || emergency">Пресечи</button>
   <div class="vertical-traffic-light">
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
+    <div class="light red-light" [ngClass]="{'active': verticalColor == 'red'}"></div>
+    <div class="light yellow-light" [ngClass]="{'active': verticalColor == 'yellow'}"></div>
+    <div class="light green-light" [ngClass]="{'active': verticalColor == 'green'}"></div>
   </div>
 </div>
 <div class="traffic-light-container-2">
-  <button class="cross-button">Пресечи</button>
+  <button class="cross-button" [disabled]="verticalColor == 'red' || emergency">Пресечи</button>
   <div class="vertical-traffic-light">
-    <div class="light"></div>
-    <div class="light"></div>
-    <div class="light"></div>
+    <div class="light red-light" [ngClass]="{'active': verticalColor == 'red'}"></div>
+    <div class="light yellow-light" [ngClass]="{'active': verticalColor == 'yellow'}"></div>
+    <div class="light green-light" [ngClass]="{'active': verticalColor == 'green'}"></div>
   </div>
 </div>
 

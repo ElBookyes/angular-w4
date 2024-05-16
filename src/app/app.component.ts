@@ -10,13 +10,14 @@ import { VerticalTrafficLightComponent } from './vertical-traffic-light/vertical
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  horizontalColor = 'red';
-  verticalColor = 'green';
-  trafficLightsInterval: any;
-  yellowBlinkInterval: any;
-  emergency = false;
-  crossButtonDisabled = false;
-  emergencyButtonDisabled = false;
+  private trafficLightsInterval: any;
+  private yellowBlinkInterval: any;
+  private emergency: boolean = false;
+  
+  horizontalColor: string = 'red';
+  verticalColor: string = 'green';
+  crossButtonDisabled: boolean = false;
+  emergencyButtonDisabled: boolean = false;
 
   ngOnInit(): void {
     this.startTrafficLightsInterval()
@@ -63,7 +64,7 @@ export class AppComponent {
       setTimeout(() => {
         this.emergencyButtonDisabled = false;
       }, 10000);
-    },10000);
+    }, 10000);
   }
 
   processCrossClick() {

@@ -13,4 +13,5 @@ export class HorizontalTrafficLightComponent {
   @Input() horizontalColor!: string;
   @Input() emergency!: boolean;
   @Input() isDisabled!: boolean;
+  @Input() onCrossClick!: () => void;
 }

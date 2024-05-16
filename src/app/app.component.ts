@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { HorizontalTrafficLightComponent } from './horizontal-traffic-light/horizontal-traffic-light.component';
 import { VerticalTrafficLightComponent } from './vertical-traffic-light/vertical-traffic-light.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HorizontalTrafficLightComponent, VerticalTrafficLightComponent],
+  imports: [HorizontalTrafficLightComponent, VerticalTrafficLightComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   private trafficLightsInterval: any;
   private yellowBlinkInterval: any;
-  private emergency: boolean = false;
-  
+  emergency: boolean = false;
+
   horizontalColor: string = 'red';
   verticalColor: string = 'green';
   crossButtonDisabled: boolean = false;
@@ -26,12 +25,15 @@ export class AppComponent {
   startTrafficLightsInterval() {
     if (!this.emergency) {
       this.trafficLightsInterval = setInterval(() => {
-        const newHorizontalColor = this.horizontalColor === 'red' ? 'green': 'red';
-        const newVerticalColor = this.verticalColor === 'red' ? 'green': 'red';
-
-        this.handleYellow(newHorizontalColor, newVerticalColor);
+        this.toggleColors();
       }, 5000)
     }
+  }
+
+  toggleColors() {
+    const newHorizontalColor = this.horizontalColor === 'red' ? 'green' : 'red';
+    const newVerticalColor = this.verticalColor === 'red' ? 'green' : 'red';
+    this.handleYellow(newHorizontalColor, newVerticalColor);
   }
 
   handleYellow(newHorizontalColor: string, newVerticalColor: string) {
@@ -60,10 +62,7 @@ export class AppComponent {
       this.emergency = false;
       this.resetTrafficLights();
       this.startTrafficLightsInterval();
-
-      setTimeout(() => {
-        this.emergencyButtonDisabled = false;
-      }, 10000);
+      this.enableEmergencyButtonAfterDelay();
     }, 10000);
   }
 
@@ -87,6 +86,12 @@ export class AppComponent {
     this.verticalColor = 'green';
     this.clearTrafficLightsInterval();
     this.startTrafficLightsInterval();
+  }
+
+  enableEmergencyButtonAfterDelay() {
+    setTimeout(() => {
+      this.emergencyButtonDisabled = false;
+    }, 10000);
   }
 }
 

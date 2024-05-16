@@ -12,4 +12,5 @@ export class VerticalTrafficLightComponent {
   @Input() verticalColor!: string;
   @Input() emergency!: boolean;
   @Input() isDisabled!: boolean;
+  @Input() onCrossClick!: () => void;
 }

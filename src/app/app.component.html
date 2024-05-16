@@ -1,5 +1,5 @@
 <main class="container">
     <app-horizontal-traffic-light [onCrossClick]="processCrossClick" [horizontalColor]="horizontalColor"></app-horizontal-traffic-light>
-    <app-vertical-traffic-light [verticalColor]="verticalColor"></app-vertical-traffic-light>
+    <app-vertical-traffic-light [onCrossClick]="processCrossClick" [verticalColor]="verticalColor"></app-vertical-traffic-light>
     <button (click)="processEmergency()" [disabled]="emergencyButtonDisabled">Авария</button>
 </main>

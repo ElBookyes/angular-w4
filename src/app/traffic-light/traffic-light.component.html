@@ -1,0 +1,8 @@
+<div [ngClass]="container">
+    <button class="cross-button" (click)="onCrossClick();" [disabled]="color == 'red' || emergency">Пресечи</button>
+    <div [ngClass]="direction">
+      <div class="light red-light" [ngClass]="{'active': color == 'red'}"></div>
+      <div class="light yellow-light" [ngClass]="{'active': color == 'yellow'}"></div>
+      <div class="light green-light" [ngClass]="{'active': color == 'green'}"></div>
+    </div>
+</div>

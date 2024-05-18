@@ -7,7 +7,7 @@ import { TrafficLightComponent } from '../traffic-light/traffic-light.component'
   standalone: true,
   imports: [CommonModule, TrafficLightComponent],
   templateUrl: './traffic-light-controller.component.html',
-  styleUrl: './traffic-light-controller.component.scss'
+  styleUrls: ['./traffic-light-controller.component.scss']
 })
 export class TrafficLightControllerComponent {
   private trafficLightsInterval: any;

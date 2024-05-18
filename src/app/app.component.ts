@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TrafficLightComponent } from './traffic-light/traffic-light.component';
+import { TrafficLightControllerComponent } from './traffic-light-controller/traffic-light-controller.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [TrafficLightComponent],
+  imports: [TrafficLightControllerComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

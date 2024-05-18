@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, inject } from '@angular/core';
+import { TrafficLightControllerComponent } from '../traffic-light-controller/traffic-light-controller.component';
 
 @Component({
   selector: 'app-traffic-light',
@@ -15,4 +16,10 @@ export class TrafficLightComponent {
   @Input() direction!: string;
   @Input() container!: string;
   @Input() onCrossPress = () => {};
+
+  trafficLightController = inject(TrafficLightControllerComponent);
+
+  onCrossClick() {
+    this.trafficLightController.processCrossClick();
+  }
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TrafficLightComponent } from '../traffic-light/traffic-light.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { TrafficLightComponent } from '../traffic-light/traffic-light.component'
   templateUrl: './traffic-light-controller.component.html',
   styleUrls: ['./traffic-light-controller.component.scss']
 })
-export class TrafficLightControllerComponent {
+export class TrafficLightControllerComponent implements OnInit, OnDestroy {
   private trafficLightsInterval: any;
   private yellowBlinkInterval: any;
   emergency: boolean = false;
@@ -21,11 +21,12 @@ export class TrafficLightControllerComponent {
   crossButtonDisabled: boolean = false;
   emergencyButtonDisabled: boolean = false;
 
+
   ngOnInit(): void {
     this.startTrafficLightsInterval()
   }
 
-  startTrafficLightsInterval() {
+  startTrafficLightsInterval(): void {
     if (!this.emergency) {
       this.trafficLightsInterval = setInterval(() => {
         this.toggleColors();
@@ -33,13 +34,13 @@ export class TrafficLightControllerComponent {
     }
   }
 
-  toggleColors() {
+  toggleColors(): void {
     const newHorizontalColor = this.horizontalColor === 'red' ? 'green' : 'red';
     const newVerticalColor = this.verticalColor === 'red' ? 'green' : 'red';
     this.handleYellow(newHorizontalColor, newVerticalColor);
   }
 
-  handleYellow(newHorizontalColor: string, newVerticalColor: string) {
+  handleYellow(newHorizontalColor: string, newVerticalColor: string): void {
     this.horizontalColor = 'yellow';
     this.verticalColor = 'yellow';
     this.clearTrafficLightsInterval();
@@ -51,7 +52,7 @@ export class TrafficLightControllerComponent {
     }, 2000)
   }
 
-  processEmergency() {
+  processEmergency(): void {
     if (!this.emergency) {
       this.emergency = true;
       this.emergencyButtonDisabled = true;
@@ -69,32 +70,37 @@ export class TrafficLightControllerComponent {
     }, 10000);
   }
 
-  processCrossClick() {
+  processCrossClick(): void {
     if (this.horizontalColor === 'yellow' || this.verticalColor === 'yellow') {
       alert('Incorrect crossing');
       console.log('Incorrect crossing');
     }
   }
 
-  flashYellowLights(){
+  flashYellowLights(): void {
     this.horizontalColor = this.horizontalColor == 'yellow' ? 'off' : 'yellow';
     this.verticalColor = this.verticalColor == 'yellow' ? 'off' : 'yellow';
   }
 
-  clearTrafficLightsInterval() {
+  private clearTrafficLightsInterval(): void {
     clearInterval(this.trafficLightsInterval);
   }
 
-  resetTrafficLights() {
+  private resetTrafficLights(): void {
     this.horizontalColor = 'red';
     this.verticalColor = 'green';
     this.clearTrafficLightsInterval();
     this.startTrafficLightsInterval();
   }
 
-  enableEmergencyButtonAfterDelay() {
+  enableEmergencyButtonAfterDelay(): void {
     setTimeout(() => {
       this.emergencyButtonDisabled = false;
     }, 10000);
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.trafficLightsInterval);
+    clearInterval(this.yellowBlinkInterval);
   }
 }

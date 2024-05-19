@@ -15,11 +15,11 @@ export class TrafficLightComponent {
   @Input() isDisabled!: boolean;
   @Input() direction!: string;
   @Input() container!: string;
-  @Input() onCrossPress = () => {};
+  @Input() onCrossPress!: () => void; // Doesn't work :(
 
   trafficLightController = inject(TrafficLightControllerComponent);
 
-  onCrossClick() {
+  onCrossClick(): void {
     this.trafficLightController.processCrossClick();
   }
 }
